@@ -31,6 +31,8 @@ This ttymidi-rpi package takes care of adding the right lines to cmdline.txt and
 
 In recent Debian versions (>= 12), it seems that the `'enable_uart=1'` option does more harm than good. I advise you to delete `enable_uart=1` in /boot/config.txt, and keep the two `dtoverlay` lines, at least on RPI Zero (Ok on RPI 4B).
 
+Note that `console=tty1` (without the '`S`') must *remain* in /boot/firmware/cmdline.txt - without this it seems that other processes will try to use the serial port.
+
 For the Raspberry Pi 5, you will need an additional overlay in config.txt, and a recent kernel, for example 6.12.32. The line to add is: `dtoverlay=midi-uart0-pi5`.
 
 Check your kernel version with `uname -a`. And update if needed to 6.12.32 with `sudo rpi-update f810e0a`.
